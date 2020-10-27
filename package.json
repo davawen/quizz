@@ -1,0 +1,25 @@
+{
+  "name": "quizz",
+  "version": "0.0.1",
+  "description": "Website for quizzs",
+  "main": "main.js",
+  "scripts": {
+    "compile": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davawen/quizz.git"
+  },
+  "author": "davawen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davawen/quizz/issues"
+  },
+  "homepage": "https://github.com/davawen/quizz#readme",
+  "dependencies": {
+    "@types/express": "^4.17.8",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "faunadb": "^3.0.1"
+  }
+}

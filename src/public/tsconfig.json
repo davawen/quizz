@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"lib": [
+			"DOM"
+		],
+		"outDir": "../../dist/public/script",
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"esModuleInterop": false,
+		"baseUrl": ".",
+		"allowSyntheticDefaultImports": true
+	}
+}

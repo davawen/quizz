@@ -96,6 +96,8 @@ app.post('/createauth',
 		let username: string = req.body.username;
 		let password: string = req.body.password;
 		
+		console.log(username + '.' + password);
+		
 		if(username && password)
 		{
 			//See if user already exists
@@ -103,6 +105,8 @@ app.post('/createauth',
 			const docs: PaginateUsers = await client.query(
 				Paginate(Match(Index("usersByUsername"), username))
 			);
+			
+			console.log(docs);
 			
 			if(docs.data.length > 0)
 			{
@@ -112,22 +116,24 @@ app.post('/createauth',
 			}
 			
 			//Create account then login
+			await client.query(
+				Create(Collection('users'),
+					{
+						data:
+						{
+							username: username
+						},
+						credentials:
+						{
+							password: password
+						}
+					}
+				)
+			);
+			
 			const credentials: LoginInformation = await client.query(
 				Login(
-					await client.query(
-						Create(Collection('users'),
-						{
-							data:
-							{
-								username: username
-							},
-							credentials:
-							{
-								password: password
-							}
-						}
-						)
-					),
+					Match(Index("usersByUsername"), username),
 					{ password: password }
 				)
 			);
@@ -135,6 +141,8 @@ app.post('/createauth',
 			req.session.loggedIn = true;
 			req.session.username = username;
 			req.session.credentials = credentials;
+			
+			console.log(req.session);
 			
 			res.send('200');
 		}

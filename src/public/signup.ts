@@ -16,7 +16,7 @@ $('#', 'submit').addEventListener('click',
 			}
 		);
 		
-		request('POST', '/createauth', body,
+		let req = request('POST', '/createauth', body,
 			(res) =>
 			{
 				switch(res)
@@ -33,6 +33,8 @@ $('#', 'submit').addEventListener('click',
 				}
 			}
 		);
+		
+		req.onload = console.log;
 	}
 );
 
